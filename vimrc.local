@@ -1,0 +1,35 @@
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+function! RemoveTrailingWhitespace()
+  let _s=@/
+  let l:save_cursor = getpos('.')
+  %s/\s\+$//e
+  let @/=_s
+  call setpos('.', l:save_cursor)
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<CR>
+
+map <Leader>w :call RemoveTrailingWhitespace()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+autocmd BufWritePost *.py call Flake8()
+
+let g:solarized_termcolors=256
+set background=dark
+colorscheme solarized
+
+let g:rspec_command = "!clear && echo bin/rspec {spec} && bin/rspec {spec}"
+
+let python_highlight_all=1
