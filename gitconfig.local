@@ -1,4 +1,5 @@
 [init]
+  defaultBranch = main
   templatedir = ~/.git_template
 [push]
   default = current
@@ -10,6 +11,7 @@
   branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authordate:relative)\t%(color:red)%(authorname)\t%(color:white)%(color:bold)%(refname:short)\" refs/remotes
   ci = commit -v
   co = checkout
+  pf = push --force-with-lease
   st = status
 [core]
   excludesfile = ~/.gitignore
@@ -22,6 +24,12 @@
   prune = true
 [rebase]
   autosquash = true
+[include]
+  path = ~/.gitconfig.local
+[diff]
+  colorMoved = zebra
 [user]
-  email = jmazur@gmail.com
-  name = Justin Mazur
+	email = jmazur@gmail.com
+	name = Justin Mazur
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
