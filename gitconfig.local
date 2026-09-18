@@ -24,12 +24,5 @@
   prune = true
 [rebase]
   autosquash = true
-[include]
-  path = ~/.gitconfig.local
 [diff]
   colorMoved = zebra
-[user]
-	email = jmazur@gmail.com
-	name = Justin Mazur
-[credential "https://git.heroku.com"]
-	helper = !heroku git:credentials
